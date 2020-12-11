@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
+using RestaurantApp.Data;
 
 namespace RestaurantApp.Pages.Restaurants
 {
@@ -17,7 +18,7 @@ namespace RestaurantApp.Pages.Restaurants
         public string Message_properties { get; set; }
 
 
-        public ListModel(IConfiguration config)
+        public ListModel(IConfiguration config, IRestaurantData restaurantData)
         {
             this.config = config;
         }
