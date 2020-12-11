@@ -1,0 +1,31 @@
+﻿@page
+@model RestaurantApp.Pages.Restaurants.ListModel
+@{
+}
+<h1>Restaurants</h1>
+<br />
+
+<div>
+    <h5>Welcome Messages:</h5>
+    <ul>
+        <li>@Model.Message</li>
+        <li>@Model.Message_properties</li>
+    </ul>
+</div>
+
+<br />
+<div>
+    <h4>RESTAURANTS TABLE</h4>
+    <h6>Saved In Memory:</h6>
+    <table class="table">
+        @foreach (var restaurant in Model.Restaurants)
+        {
+            <tr>
+                <td>@restaurant.Name</td>
+                <td>@restaurant.Location</td>
+                <td>@restaurant.Cuisine</td>
+            </tr>
+        }
+
+    </table>
+</div>
