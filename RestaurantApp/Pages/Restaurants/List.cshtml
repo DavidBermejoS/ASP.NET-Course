@@ -16,6 +16,20 @@
 <br />
 <div>
     <h4>RESTAURANTS TABLE</h4>
+    <form method="get">
+        <div class="form-group">
+            <div class="input-group">
+                <input type="search" class="form-control" value=""/>
+                <span class="input-group-button">
+                    <button class="btn btn-info">
+                        <!--Glyphicon is not supported in Bootstrap 4-->
+                        <!--<i class="glyphicon glyphicon-search" aria-hidden="true">Search</i>-->
+                        <i class="">Search</i>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </form>
     <h6>Saved In Memory:</h6>
     <table class="table">
         @foreach (var restaurant in Model.Restaurants)
