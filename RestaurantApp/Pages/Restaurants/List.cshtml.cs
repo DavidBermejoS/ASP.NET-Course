@@ -27,11 +27,11 @@ namespace RestaurantApp.Pages.Restaurants
             this.restaurantData = restaurantData;
         }
 
-        public void OnGet()
+        public void OnGet(string searchTerm)
         {
             Message = "Hello World!";
-            Message_properties = config["Message"];
-            Restaurants = restaurantData.GetAll();
+            Message_properties = config["Message"]; 
+            Restaurants = restaurantData.GetRestaurantByName(searchTerm);
         }
     }
 }
