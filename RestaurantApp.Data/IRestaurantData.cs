@@ -8,8 +8,8 @@ namespace RestaurantApp.Data
 {
     public interface IRestaurantData
     {
-        IEnumerable<Restaurant> GetAll();
-
+        IEnumerable<Restaurant> GetRestaurantByName(string name);
+        Restaurant GetRestaurantById(int id);
     }
 
     public class InMemoryRestaurantData : IRestaurantData
@@ -22,14 +22,20 @@ namespace RestaurantApp.Data
             {
                 new Restaurant{Id = 1, Name = "Scott's Pizza", Location = "Maryland",Cuisine = CuisineType.Italian },
                 new Restaurant{Id = 2, Name = "Cinnamon Club", Location = "London",Cuisine = CuisineType.Indian},
-                new Restaurant { Id = 1, Name = "Scott's Pizza", Location = "Maryland", Cuisine = CuisineType.Italian }
+                new Restaurant { Id = 3, Name = "La Costa", Location = "California", Cuisine = CuisineType.Mexican }
 
             };
         }
 
-        public IEnumerable<Restaurant> GetAll()
+        public Restaurant GetRestaurantById(int id)
+        {
+            return restaurants.SingleOrDefault(r => r.Id == id);
+        }
+
+        public IEnumerable<Restaurant> GetRestaurantByName(string name)
         {
             return from r in restaurants
+                   where string.IsNullOrEmpty(name) || r.Name.StartsWith(name)
                    orderby r.Name
                    select r;
         }
