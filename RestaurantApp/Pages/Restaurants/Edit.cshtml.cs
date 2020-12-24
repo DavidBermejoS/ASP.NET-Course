@@ -40,6 +40,7 @@ namespace RestaurantApp.Pages.Restaurants
 
         public IActionResult OnPost()
         {
+            Cuisines = htmlHelper.GetEnumSelectList<CuisineType>();
             Restaurant = restaurantData.Update(Restaurant);
             restaurantData.Commit();
             return Page();
