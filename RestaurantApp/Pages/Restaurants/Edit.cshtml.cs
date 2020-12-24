@@ -44,6 +44,7 @@ namespace RestaurantApp.Pages.Restaurants
             {
                 Restaurant = restaurantData.Update(Restaurant);
                 restaurantData.Commit();
+                return RedirectToPage("./Detail", new {restaurantId = Restaurant.Id });
             }
             Cuisines = htmlHelper.GetEnumSelectList<CuisineType>();
             return Page();
