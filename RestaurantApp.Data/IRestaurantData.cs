@@ -10,6 +10,8 @@ namespace RestaurantApp.Data
     {
         IEnumerable<Restaurant> GetRestaurantByName(string name);
         Restaurant GetById(int id);
+        Restaurant Update(Restaurant restaurant);
+        int Commit();
     }
 
     public class InMemoryRestaurantData : IRestaurantData
@@ -38,6 +40,23 @@ namespace RestaurantApp.Data
                    where string.IsNullOrEmpty(name) || r.Name.StartsWith(name)
                    orderby r.Name
                    select r;
+        }
+
+        public Restaurant Update(Restaurant updatedRestaurant)
+        {
+            var restaurant = restaurants.SingleOrDefault(r => r.Id == updatedRestaurant.Id);
+            if(restaurant != null)
+            {
+                restaurant.Name = updatedRestaurant.Name;
+                restaurant.Location = updatedRestaurant.Location;
+                restaurant.Cuisine = updatedRestaurant.Cuisine;
+            }
+            return restaurant;
+        }
+        public int Commit()
+        {
+            //this method will have a real meaning when a real datasource will be implemented.
+            return 0;
         }
     }
 }
