@@ -22,8 +22,6 @@ namespace RestaurantApp.Pages.Restaurants
         [BindProperty(SupportsGet =true)]
         public string SearchTerm { get; set; }
 
-
-
         public ListModel(IConfiguration config, IRestaurantData restaurantData)
         {
             this.config = config;
@@ -32,8 +30,8 @@ namespace RestaurantApp.Pages.Restaurants
 
         public void OnGet()
         {
-            Message = "Hello World!";
-            Message_properties = config["Message"]; 
+            //Message = "Hello World!";
+            //Message_properties = config["Message"]; 
             Restaurants = restaurantData.GetRestaurantByName(SearchTerm);
         }
     }

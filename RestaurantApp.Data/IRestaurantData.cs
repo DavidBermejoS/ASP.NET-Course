@@ -9,7 +9,7 @@ namespace RestaurantApp.Data
     public interface IRestaurantData
     {
         IEnumerable<Restaurant> GetRestaurantByName(string name);
-        Restaurant GetRestaurantById(int id);
+        Restaurant GetById(int id);
     }
 
     public class InMemoryRestaurantData : IRestaurantData
@@ -27,7 +27,7 @@ namespace RestaurantApp.Data
             };
         }
 
-        public Restaurant GetRestaurantById(int id)
+        public Restaurant GetById(int id)
         {
             return restaurants.SingleOrDefault(r => r.Id == id);
         }
