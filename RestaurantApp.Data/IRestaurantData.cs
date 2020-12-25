@@ -9,7 +9,10 @@ namespace RestaurantApp.Data
     public interface IRestaurantData
     {
         IEnumerable<Restaurant> GetRestaurantByName(string name);
-        Restaurant GetRestaurantById(int id);
+        Restaurant GetById(int id);
+        Restaurant Update(Restaurant restaurant);
+        Restaurant Add(Restaurant restaurant);
+        int Commit();
     }
 
     public class InMemoryRestaurantData : IRestaurantData
@@ -27,7 +30,7 @@ namespace RestaurantApp.Data
             };
         }
 
-        public Restaurant GetRestaurantById(int id)
+        public Restaurant GetById(int id)
         {
             return restaurants.SingleOrDefault(r => r.Id == id);
         }
@@ -38,6 +41,30 @@ namespace RestaurantApp.Data
                    where string.IsNullOrEmpty(name) || r.Name.StartsWith(name)
                    orderby r.Name
                    select r;
+        }
+
+        public Restaurant Update(Restaurant updatedRestaurant)
+        {
+            var restaurant = restaurants.SingleOrDefault(r => r.Id == updatedRestaurant.Id);
+            if(restaurant != null)
+            {
+                restaurant.Name = updatedRestaurant.Name;
+                restaurant.Location = updatedRestaurant.Location;
+                restaurant.Cuisine = updatedRestaurant.Cuisine;
+            }
+            return restaurant;
+        }
+        public int Commit()
+        {
+            //this method will have a real meaning when a real datasource will be implemented.
+            return 0;
+        }
+
+        public Restaurant Add(Restaurant newRestaurant)
+        {
+            restaurants.Add(newRestaurant);
+            newRestaurant.Id = restaurants.Max(r => r.Id) + 1;
+            return newRestaurant;
         }
     }
 }

@@ -14,15 +14,18 @@ namespace RestaurantApp.Pages.Restaurants
 
         public IRestaurantData restaurantData { get; set; }
 
+        [TempData]
+        public string InfoMessage { get; set; }
+        public Restaurant Restaurant { get; set; }
+
         public DetailModel(IRestaurantData restaurantData)
         {
             this.restaurantData = restaurantData;
         }
 
-        public Restaurant Restaurant { get; set; }
         public IActionResult OnGet(int restaurantId)
         {
-            Restaurant = restaurantData.GetRestaurantById(restaurantId);
+            Restaurant = restaurantData.GetById(restaurantId);
             if(Restaurant == null)
             {
                 return RedirectToPage("./NotFound");
