@@ -11,6 +11,7 @@ namespace RestaurantApp.Data
         IEnumerable<Restaurant> GetRestaurantByName(string name);
         Restaurant GetById(int id);
         Restaurant Update(Restaurant restaurant);
+        Restaurant Add(Restaurant restaurant);
         int Commit();
     }
 
@@ -57,6 +58,13 @@ namespace RestaurantApp.Data
         {
             //this method will have a real meaning when a real datasource will be implemented.
             return 0;
+        }
+
+        public Restaurant Add(Restaurant newRestaurant)
+        {
+            restaurants.Add(newRestaurant);
+            newRestaurant.Id = restaurants.Max(r => r.Id) + 1;
+            return newRestaurant;
         }
     }
 }
