@@ -31,7 +31,7 @@ namespace RestaurantApp
                 options.UseSqlServer(Configuration.GetConnectionString("RestaurantAppDb"));
             });
 
-            services.AddSingleton<IRestaurantData, InMemoryRestaurantData>();
+            services.AddScoped<IRestaurantData, SqlRestaurantData>();
 			services.AddRazorPages();
 		}
 
