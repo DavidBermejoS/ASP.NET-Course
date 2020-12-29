@@ -2,66 +2,32 @@
 @model RestaurantApp.Pages.Restaurants.ListModel
 @{
 }
-<!--
-<h1>Restaurants</h1>
-<br />
-<div>
-    <h5>Welcome Messages:</h5>
-    <ul>
-        <li>@Model.Message</li>
-        <li>@Model.Message_properties</li>
-    </ul>
-</div>
--->
-
-<br />
-<div>
-    <h3>RESTAURANTS</h3>
-    <form method="get">
-        <div class="form-group">
-            <div class="input-group">
-                <input type="search" class="form-control" asp-for="SearchTerm"/>
-                <span class="input-group-button">
-                    <button class="btn btn-info">
-                        <!--Glyphicon is not supported in Bootstrap 4-->
-                        <!--<i class="glyphicon glyphicon-search" aria-hidden="true">Search</i>-->
-                        <i class="">Search</i>
-                    </button>
-                </span>
-            </div>
+<h1>RESTAURANTS</h1>
+<form method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="search" class="form-control" asp-for="SearchTerm" />
+            <span class="input-group-button">
+                <button class="btn btn-info">
+                    <!--Glyphicon is not supported in Bootstrap 4-->
+                    <!--<i class="glyphicon glyphicon-search" aria-hidden="true">Search</i>-->
+                    <!--Added iconify library into the layout with an script.-->
+                    <span style="font-size: 22px; line-height: 1em;" class="iconify p-0 m-0" data-icon="mdi:card-search-outline" data-inline="false"></span>
+                </button>
+            </span>
         </div>
-    </form>
-    <h6>Restaurant List:</h6>
-    <table class="table">
-        @foreach (var restaurant in Model.Restaurants)
-        {
-            <tr>
-                <td>@restaurant.Name</td>
-                <td>@restaurant.Location</td>
-                <td>@restaurant.Cuisine</td>
-                <td>
-                    <a class="btn btn-info" asp-page="./Detail" asp-route-restaurantId="@restaurant.Id">
-                        <i>Details</i>
-                    </a>
-                    <a class="btn btn-warning" asp-page="./Edit" asp-route-restaurantId="@restaurant.Id">
-                        <i>Edit</i>
-                    </a>
-                    <a class="btn btn-danger" asp-page="./Delete" asp-route-restaurantId="@restaurant.Id">
-                        <i>Delete</i>
-                    </a>
-                </td>
-            </tr>
-        }
-
-    </table>
-    <div class="float-right">
-        <a asp-page="./Edit" class="btn btn-primary">Add New</a>
     </div>
-</div>
+</form>
 
-@section footer{ 
-    <div class="bg-dark">
-        <p class="text-light text-md-center"> See more information on my Github page: <a href="https://github.com/DavidBermejoS/ASP.NET-Course">https://github.com/DavidBermejoS/ASP.NET-Course</a></p>
-        <p class="text-light text-md-center">&copy; 2020 - RestaurantApp - <a asp-area="" asp-page="/Privacy">Privacy</a></p>
-    </div>
+@foreach (var restaurant in Model.Restaurants)
+{
+    <partial name="_Summary" model="restaurant" />
 }
+
+<a asp-page="./Edit" class="btn btn-primary m-2">Add New</a>
+
+<!--
+@section footer{
+    
+}
+-->
