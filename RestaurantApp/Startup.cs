@@ -52,9 +52,8 @@ namespace RestaurantApp
 
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
-
+            app.UseNodeModules(new TimeSpan(600));
 			app.UseRouting();
-
 			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints =>
