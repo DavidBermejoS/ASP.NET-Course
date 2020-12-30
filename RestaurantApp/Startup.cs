@@ -33,10 +33,11 @@ namespace RestaurantApp
 
             services.AddScoped<IRestaurantData, SqlRestaurantData>();
 			services.AddRazorPages();
-		}
+            services.AddControllers();
+        }
 
-		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
 			if (env.IsDevelopment())
 			{
@@ -51,15 +52,15 @@ namespace RestaurantApp
 
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
-
+            app.UseNodeModules(new TimeSpan(600));
 			app.UseRouting();
-
 			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapRazorPages();
-			});
+                endpoints.MapControllers();
+            });
 		}
 	}
 }

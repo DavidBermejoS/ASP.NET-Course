@@ -40,6 +40,11 @@ namespace RestaurantApp.Data
             return db.Restaurants.Find(id);
         }
 
+        public int GetCountOfRestaurants()
+        {
+            return db.Restaurants.Count();
+        }
+
         public IEnumerable<Restaurant> GetRestaurantByName(string name)
         {
             var query = from r in db.Restaurants

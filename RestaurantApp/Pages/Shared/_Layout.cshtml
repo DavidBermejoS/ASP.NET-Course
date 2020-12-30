@@ -4,8 +4,25 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - RestaurantApp</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <!--In this tag will be included files locally stored because is a local development environment
+        served from a local web server-->
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <!--In this following tag, instead, will be included the links to obtain the css resources online.-->
+    <environment exclude="Development">
+        <link rel="stylesheet" href="//ajax.aspnetcdn.com/ajax/bootstrap/4.3.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet"
+              href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+              asp-fallback-href="~/node_modules/@@fortawesome/fontawesome-free/css/all.css"
+              asp-fallback-test-class="fa"
+              asp-fallback-test-property="font-family"
+              asp-fallback-test-value="FontAwesome" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
 </head>
 <body>
     <header>
@@ -36,19 +53,41 @@
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
+        <footer class="border-top container text-muted">
+            <div class="container">
+                <vc:restaurant-count></vc:restaurant-count>
+                @RenderSection("footer", required: false)
+                <p class="text-black-50 text-md-center"> See more information on my Github page: <a href="https://github.com/DavidBermejoS/ASP.NET-Course">https://github.com/DavidBermejoS/ASP.NET-Course</a></p>
+                <p class="text-black-50 text-md-center">&copy; 2020 - RestaurantApp - <a asp-area="" asp-page="/Privacy">Privacy</a></p>
+                <p class="mx-auto text-center">
+                    <img class="d-block mx-auto" src="~/images/footer-icon.png" />
+                </p>
+            </div>
+        </footer>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            @RenderSection("footer", required: false)
-            
-        </div>
-    </footer>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-
+    <!--In the development environment, the script resources are obtained by a local file served from a local web server (files stored inside the project)
+        One example of this fact is the "iconify" lib included in a local way in the project-->
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/lib/iconify/iconify.min.js"></script>
+    </environment>
+    <!--In this following tags the scripts will be obtained as an online resource
+        One example of this fact could be the call to the iconify page to obtain the js file of the icons.-->
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.4.1.min.js"
+                asp-fallback-src="~/node_modules/jquery/dist/jquery.js"
+                asp-fallback-test="window.jQuery">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/4.3.1/bootstrap.min.js"
+                asp-fallback-src="~/node_modules/bootstrap/dist/js/bootstrap.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    </environment>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
