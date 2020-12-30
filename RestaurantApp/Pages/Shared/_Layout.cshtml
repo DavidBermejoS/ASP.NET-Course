@@ -36,15 +36,16 @@
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
+        <footer class="border-top container text-muted">
+            <div class="container">
+                <vc:restaurant-count></vc:restaurant-count>
+                @RenderSection("footer", required: false)
+                <p class="text-black-50 text-md-center"> See more information on my Github page: <a href="https://github.com/DavidBermejoS/ASP.NET-Course">https://github.com/DavidBermejoS/ASP.NET-Course</a></p>
+                <p class="text-black-50 text-md-center">&copy; 2020 - RestaurantApp - <a asp-area="" asp-page="/Privacy">Privacy</a></p>
+            </div>
+        </footer>
     </div>
 
-    <footer class="border-top container text-muted">
-        <div class="container">
-            @RenderSection("footer", required: false)
-            <p class="text-black-50 text-md-center"> See more information on my Github page: <a href="https://github.com/DavidBermejoS/ASP.NET-Course">https://github.com/DavidBermejoS/ASP.NET-Course</a></p>
-            <p class="text-black-50 text-md-center">&copy; 2020 - RestaurantApp - <a asp-area="" asp-page="/Privacy">Privacy</a></p>
-        </div>
-    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
