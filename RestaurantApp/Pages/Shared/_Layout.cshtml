@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - RestaurantApp</title>
-    <!--In this tag will be included files locally stored because is a local development environment-->
+    <!--In this tag will be included files locally stored because is a local development environment
+        served from a local web server-->
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="~/css/site.css" />
@@ -65,7 +66,7 @@
         </footer>
     </div>
 
-    <!--In the development environment, the script resources are obtained by a local file inside the project
+    <!--In the development environment, the script resources are obtained by a local file served from a local web server (files stored inside the project)
         One example of this fact is the "iconify" lib included in a local way in the project-->
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
