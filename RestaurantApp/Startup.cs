@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -50,6 +51,8 @@ namespace RestaurantApp
 				app.UseHsts();
 			}
 
+            app.Use(CustomMiddleware);
+
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
             app.UseNodeModules();
@@ -62,5 +65,20 @@ namespace RestaurantApp
                 endpoints.MapControllers();
             });
 		}
-	}
+
+        private RequestDelegate CustomMiddleware(RequestDelegate next)
+        {
+            return async ctx =>
+            {
+                if (ctx.Request.Path.StartsWithSegments("/custom"))
+                {
+                    await ctx.Response.WriteAsync("This is the input of custom Middleware");
+                }
+                else
+                {
+                    await next(ctx);
+                }
+            };
+        }
+    }
 }
