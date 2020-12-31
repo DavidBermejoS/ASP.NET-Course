@@ -1,4 +1,5 @@
 # Restaurant App - ASP.NET Core Fundamentals Course
+*Current Version: v1.0.0*
 
 ## Index:
 - ["Introduction"](#Introduction)
