@@ -1,0 +1,34 @@
+﻿@page
+@model RestaurantApp.Pages.Restaurants.ListModel
+@{
+    ViewData["Title"] = "List";
+}
+<h1>RESTAURANTS</h1>
+<form method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="search" class="form-control" asp-for="SearchTerm" />
+            <span class="input-group-button">
+                <button class="btn btn-info">
+                    <!--Glyphicon is not supported in Bootstrap 4-->
+                    <!--<i class="glyphicon glyphicon-search" aria-hidden="true">Search</i>-->
+                    <!--Added iconify library into the layout with an script.-->
+                    <span style="font-size: 22px; line-height: 1em;" class="iconify p-0 m-0" data-icon="mdi:card-search-outline" data-inline="false"></span>
+                </button>
+            </span>
+        </div>
+    </div>
+</form>
+
+@foreach (var restaurant in Model.Restaurants)
+{
+    <partial name="_Summary" model="restaurant" />
+}
+
+<a asp-page="./Edit" class="btn btn-primary m-2">Add New</a>
+
+<!--
+@section footer{
+    
+}
+-->
