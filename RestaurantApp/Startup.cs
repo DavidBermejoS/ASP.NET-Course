@@ -52,7 +52,7 @@ namespace RestaurantApp
 
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
-            app.UseNodeModules(new TimeSpan(600));
+            app.UseNodeModules();
 			app.UseRouting();
 			app.UseAuthorization();
 
